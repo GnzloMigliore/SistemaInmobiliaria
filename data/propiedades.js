@@ -1,15 +1,14 @@
 const conn = require("./conn");
-const INMOBILIARIA = "inmobiliaria";
-const PROPIEDADES = "propiedades";
-const objectId = require("mongodb").ObjectId;
+const INMOBILIARIA = "INMOBILIARIA";
+const PROPIEDADES = "PROPIEDADES";
+
 
 async function postPropiedades(propiedad) {
   const clientMongo = await conn.getConnection();
   const result = await clientMongo
     .db(INMOBILIARIA)
     .collection(PROPIEDADES)
-    .updateOne(
-      { _id: new objectId(inventor._id) },
+    .insertOne(
       {
         $set: {
           tipo: propiedad.tipo,

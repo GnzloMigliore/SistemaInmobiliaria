@@ -1,19 +1,27 @@
 var express = require("express");
 var router = express.Router();
-const data = require("../data/usuarios");
-// const auth = require("../middlewares/Auth");
+const controller = require("../controllers/usuarios");
+const validarRegistro = require("../middlewares/Registro");
+const auth = require("../middlewares/Auth");
 
-
-/* post logueo  un usuario */
+/* REGISTRO USUARIO */
+router.post("/",validarRegistro ,async function (req, res) {
+  const user = req.body;
+  const result = await controller.addUser(user);
+  res.json(result);
+});
+/* LOGIN USUARIO */
 router.post("/login", async function (req, res) {
   try {
-    const user = await data.findByCredential(req.body.email, req.body.password);
-    const token = data.generatedToken(user);
-    res.send({ user, token });
+    const result = await controller.login(req.body);
+    res.send(result);
   } catch (error) {
     console.log("salgo por aca");
     res.status(401).send(error.menssage);
   }
 });
-
+/* PUT USUARIO. */
+router.put("/",auth , async function (req, res, next) {
+  res.json(await controller.updateUser(req.body));
+});
 module.exports = router;

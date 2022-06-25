@@ -7,7 +7,7 @@ function auth(req, res, next) {
     console.log(user);
     next();
   } catch (error) {
-    res.status(401).send({ err: error.menssage });
+    res.status(401).send({ err: error });
   }
 }
 

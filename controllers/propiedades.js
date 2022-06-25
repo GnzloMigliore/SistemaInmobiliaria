@@ -18,4 +18,18 @@ async function deletePropiedad(id){
 async function filtrarPorTipo(tipo){    
     return propiedades.filtrarPorTipo(tipo);
 }
-module.exports = {postPropiedades,getPropiedades,getPropiedad,updatePropiedad,deletePropiedad,filtrarPorTipo};
+async function filtrarPromedio(tipo,barrio){    
+    let properties = await propiedades.filtrarPromedio(tipo,barrio);
+    let promedio = 0;
+    properties.map((p) => {
+        promedio += p.precio
+      });
+      return properties.length == 0 ? 0 : promedio/properties.length
+}
+module.exports = {postPropiedades,
+                   getPropiedades,
+                   getPropiedad,
+                   updatePropiedad,
+                   deletePropiedad,
+                   filtrarPorTipo,
+                   filtrarPromedio};

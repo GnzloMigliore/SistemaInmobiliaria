@@ -27,4 +27,8 @@ router.delete("/:id",auth , async function (req, res, next) {
 router.get("/filtrar/tipo",auth , async function (req, res, next) {
   res.json(await controller.filtrarPorTipo(req.query.tipo));
 });
+/* OBTENER PROMEDIO VENTA O ALQUILER */
+router.get("/filtrar/promedio",auth , async function (req, res, next) {
+  res.json(await controller.filtrarPromedio(req.query.tipo,req.query.barrio));
+});
 module.exports = router;

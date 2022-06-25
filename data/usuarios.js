@@ -40,11 +40,17 @@ async function findByCredential(emailUsuario, passwordUsuario) {
 
 // generador de token
 function generatedToken(user) {
-  console.log("clave");
   const token = jwt.sign({ _id: user._id }, process.env.CLAVESECRETA, {
     expiresIn: "2h",
   });
   return token;
 }
-
-module.exports = { addUser, findByCredential, generatedToken };
+async function getUser(email){
+  const connectiondb = await conn.getConnection();
+  const supplies = await connectiondb
+              .db(INMOBILIARIA)
+              .collection(USUARIOS)
+              .findOne({"email": email});
+  return supplies;
+}
+module.exports = { addUser, findByCredential, generatedToken,getUser };

@@ -81,4 +81,22 @@ async function filtrarPorTipo(tipo) {
     .toArray();
   return propiedades;
 }
-module.exports = { postPropiedades,getAllProperties,getPropiedad,updatePropiedad,deletePropiedad,filtrarPorTipo};
+async function filtrarPromedio(tipo,barrio) {
+  console.log(tipo);
+  const connectiondb = await conn.getConnection();
+  const propiedades = await connectiondb
+    .db(INMOBILIARIA)
+    .collection(PROPIEDADES)
+    .find({"$and":[{"tipo": tipo},{"barrio": barrio}]})
+    .toArray();
+  return propiedades;
+}
+module.exports = {
+                   postPropiedades,
+                   getAllProperties,
+                   getPropiedad,
+                   updatePropiedad,
+                   deletePropiedad,
+                   filtrarPorTipo,
+                   filtrarPromedio
+                  };

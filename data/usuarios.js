@@ -14,6 +14,7 @@ async function addUser(user) {
     .collection(USUARIOS)
     .insertOne(user);
 
+  console.log(user);
   return user;
 }
 
@@ -45,12 +46,12 @@ function generatedToken(user) {
   });
   return token;
 }
-async function getUser(email){
+async function getUser(email) {
   const connectiondb = await conn.getConnection();
   const supplies = await connectiondb
-              .db(INMOBILIARIA)
-              .collection(USUARIOS)
-              .findOne({"email": email});
+    .db(INMOBILIARIA)
+    .collection(USUARIOS)
+    .findOne({ email: email });
   return supplies;
 }
-module.exports = { addUser, findByCredential, generatedToken,getUser };
+module.exports = { addUser, findByCredential, generatedToken, getUser };

@@ -6,8 +6,10 @@ var logger = require("morgan");
 require("dotenv").config();
 var propiedades = require("./routes/propiedades");
 var usuarios = require("./routes/usuarios");
+const cors = require("cors");
 
 var app = express();
+app.use(cors());
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));

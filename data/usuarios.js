@@ -53,4 +53,13 @@ async function getUser(email){
               .findOne({"email": email});
   return supplies;
 }
-module.exports = { addUser, findByCredential, generatedToken,getUser };
+async function getAllUsers(){
+  const connectiondb = await conn.getConnection();
+  const supplies = await connectiondb
+                      .db(INMOBILIARIA)
+                      .collection(USUARIOS)
+                      .find()
+                      .toArray();    
+  return supplies;
+}
+module.exports = { addUser, findByCredential, generatedToken,getUser,getAllUsers };

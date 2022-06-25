@@ -7,6 +7,8 @@ const auth = require("../middlewares/Auth");
 /* REGISTRO USUARIO */
 router.post("/",validarRegistro ,async function (req, res) {
   const user = req.body;
+  user.rol = 'usuario'
+  console.log(user);
   const result = await controller.addUser(user);
   res.json(result);
 });
@@ -23,5 +25,9 @@ router.post("/login", async function (req, res) {
 /* PUT USUARIO. */
 router.put("/",auth , async function (req, res, next) {
   res.json(await controller.updateUser(req.body));
+});
+/* GET USUARIOS. */
+router.get("/" , async function (req, res, next) {
+  res.json(await controller.getUsers());
 });
 module.exports = router;

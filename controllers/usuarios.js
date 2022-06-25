@@ -8,4 +8,7 @@ async function login(body){
     const token = usuarios.generatedToken(user);  
     return { user, token };
 }
-module.exports = {addUser,login};
+async function getUsers(){    
+    return usuarios.getAllUsers();
+}
+module.exports = {addUser,login,getUsers};

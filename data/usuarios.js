@@ -72,4 +72,23 @@ async function deleteUser(id) {
 
   return result;
 }
-module.exports = { addUser, findByCredential, generatedToken,getUser,getAllUsers,deleteUser };
+async function updateUser(user) {
+  const clientMongo = await conn.getConnection();
+  const result = await clientMongo
+    .db(INMOBILIARIA)
+    .collection(USUARIOS)
+    .updateOne(
+      { _id: new objectId(user._id) },
+      {
+        $set: {
+          nombre: user.nombre,
+          email: user.email,
+          password: user.password,
+          rol: user.rol  
+        },
+      }
+    );
+
+  return result;
+}
+module.exports = { addUser, findByCredential, generatedToken,getUser,getAllUsers,deleteUser,updateUser };

@@ -9,15 +9,7 @@ async function postPropiedades(propiedad) {
     .db(INMOBILIARIA)
     .collection(PROPIEDADES)
     .insertOne({
-        tipo: propiedad.tipo,
-        domicilio: propiedad.domicilio,
-        barrio: propiedad.barrio,
-        dormitorios: propiedad.dormitorios,
-        antiguedad: propiedad.antiguedad,
-        condición: propiedad.condición,
-        descripcion: propiedad.descripcion,  
-        moneda: propiedad.moneda,
-        precio: propiedad.precio,  
+       propiedad
     });
   return result;
 }

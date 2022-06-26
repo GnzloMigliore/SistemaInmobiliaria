@@ -22,7 +22,7 @@ router.post("/login", async function (req, res) {
   }
 });
 /* PUT USUARIO. */
-router.put("/",auth , async function (req, res) {
+router.put("/" , async function (req, res) {
   res.json(await controller.updateUser(req.body));
 });
 /* GET USUARIOS. */

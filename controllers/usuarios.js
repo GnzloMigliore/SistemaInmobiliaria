@@ -14,4 +14,7 @@ async function getUsers(){
 async function deleteUser(id){    
   return usuarios.deleteUser(id);
 }
-module.exports = {addUser,login,getUsers,deleteUser};
+async function updateUser(user){    
+  return usuarios.updateUser(user);
+}
+module.exports = {addUser,login,getUsers,deleteUser,updateUser};

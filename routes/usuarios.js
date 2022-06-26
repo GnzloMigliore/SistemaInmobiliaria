@@ -5,10 +5,9 @@ const validarRegistro = require("../middlewares/Registro");
 const auth = require("../middlewares/Auth");
 
 /* REGISTRO USUARIO */
-router.post("/", validarRegistro, async function (req, res) {
+router.post("/",validarRegistro ,async function (req, res) {
   const user = req.body;
   user.rol = 'usuario'
-  console.log(user);
   const result = await controller.addUser(user);
   res.json(result);
 });
@@ -18,16 +17,20 @@ router.post("/login", async function (req, res) {
     const result = await controller.login(req.body);
     res.send(result);
   } catch (error) {
-    console.log(error.menssage);
+    console.log("salgo por aca");
     res.status(401).send(error.menssage);
   }
 });
 /* PUT USUARIO. */
-router.put("/", auth, async function (req, res, next) {
+router.put("/",auth , async function (req, res) {
   res.json(await controller.updateUser(req.body));
 });
 /* GET USUARIOS. */
-router.get("/" , async function (req, res, next) {
+router.get("/" , async function (req, res) {
   res.json(await controller.getUsers());
+});
+/* DELETE USUARIO. */
+router.delete("/" , async function (req, res) {
+  res.json(await controller.deleteUser(req.body._id));
 });
 module.exports = router;

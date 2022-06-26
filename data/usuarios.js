@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const INMOBILIARIA = "INMOBILIARIA";
 const USUARIOS = "USUARIOS";
-
+const objectId = require('mongodb').ObjectId;
 // Creacion de usuarios
 async function addUser(user) {
   const connectiondb = await conn.getConnection();
@@ -54,9 +54,6 @@ async function getUser(email) {
     .findOne({ email: email });
   return supplies;
 }
-<<<<<<< HEAD
-module.exports = { addUser, findByCredential, generatedToken, getUser };
-=======
 async function getAllUsers(){
   const connectiondb = await conn.getConnection();
   const supplies = await connectiondb
@@ -66,5 +63,13 @@ async function getAllUsers(){
                       .toArray();    
   return supplies;
 }
-module.exports = { addUser, findByCredential, generatedToken,getUser,getAllUsers };
->>>>>>> 21bf4e58c50d2c94c792be9fff5e53a631c70d27
+async function deleteUser(id) {
+  const clientMongo = await conn.getConnection();
+  const result = await clientMongo
+    .db(INMOBILIARIA)
+    .collection(USUARIOS)
+    .deleteOne({ _id: new objectId(id) });
+
+  return result;
+}
+module.exports = { addUser, findByCredential, generatedToken,getUser,getAllUsers,deleteUser };

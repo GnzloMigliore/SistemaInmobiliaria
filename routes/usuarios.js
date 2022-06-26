@@ -30,7 +30,7 @@ router.get("/" , async function (req, res) {
   res.json(await controller.getUsers());
 });
 /* DELETE USUARIO. */
-router.delete("/" , async function (req, res) {
-  res.json(await controller.deleteUser(req.body._id));
+router.delete("/:id" , async function (req, res) {
+  res.json(await controller.deleteUser());
 });
 module.exports = router;

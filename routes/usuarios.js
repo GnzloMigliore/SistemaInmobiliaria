@@ -31,6 +31,6 @@ router.get("/" , async function (req, res) {
 });
 /* DELETE USUARIO. */
 router.delete("/:id" , async function (req, res) {
-  res.json(await controller.deleteUser());
+  res.json(await controller.deleteUser(req.params.id));
 });
 module.exports = router;

@@ -17,8 +17,7 @@ router.post("/login", async function (req, res) {
     const result = await controller.login(req.body);
     res.send(result);
   } catch (error) {
-    console.log("salgo por aca");
-    res.status(401).send(error.menssage);
+    res.status(401).send("Usuario o Contraseña no son válidas");
   }
 });
 /* PUT USUARIO. */

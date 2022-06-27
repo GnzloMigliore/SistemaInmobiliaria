@@ -1,7 +1,7 @@
 const conn = require("./conn");
 const INMOBILIARIA = "INMOBILIARIA";
 const PROPIEDADES = "PROPIEDADES";
-const objectId = require('mongodb').ObjectId;
+const objectId = require("mongodb").ObjectId;
 /* Metodo para ingresar una propiedad */
 async function postPropiedades(propiedad) {
   const clientMongo = await conn.getConnection();
@@ -9,25 +9,25 @@ async function postPropiedades(propiedad) {
     .db(INMOBILIARIA)
     .collection(PROPIEDADES)
     .insertOne({
-       propiedad
+      propiedad,
     });
   return result;
 }
-async function getAllProperties(){
+async function getAllProperties() {
   const connectiondb = await conn.getConnection();
   const supplies = await connectiondb
-                      .db(INMOBILIARIA)
-                      .collection(PROPIEDADES)
-                      .find()
-                      .toArray();    
+    .db(INMOBILIARIA)
+    .collection(PROPIEDADES)
+    .find()
+    .toArray();
   return supplies;
 }
-async function getPropiedad(id){
+async function getPropiedad(id) {
   const connectiondb = await conn.getConnection();
   const supplies = await connectiondb
-              .db(INMOBILIARIA)
-              .collection(PROPIEDADES)
-              .findOne({_id: new objectId(id)});
+    .db(INMOBILIARIA)
+    .collection(PROPIEDADES)
+    .findOne({ _id: new objectId(id) });
   return supplies;
 }
 async function updatePropiedad(propiedad) {
@@ -40,6 +40,7 @@ async function updatePropiedad(propiedad) {
       {
         $set: {
           tipo: propiedad.tipo,
+          tipoDePropiedad: propiedad.tipo_de_propiedad,
           domicilio: propiedad.domicilio,
           barrio: propiedad.barrio,
           dormitorios: propiedad.dormitorios,
@@ -47,7 +48,7 @@ async function updatePropiedad(propiedad) {
           condición: propiedad.condición,
           descripcion: propiedad.descripcion,
           moneda: propiedad.moneda,
-          precio: propiedad.precio,  
+          precio: propiedad.precio,
         },
       }
     );
@@ -69,26 +70,26 @@ async function filtrarPorTipo(tipo) {
   const propiedades = await connectiondb
     .db(INMOBILIARIA)
     .collection(PROPIEDADES)
-    .find({"tipo": tipo})
+    .find({ tipo: tipo })
     .toArray();
   return propiedades;
 }
-async function filtrarPromedio(tipo,barrio) {
+async function filtrarPromedio(tipo, barrio) {
   console.log(tipo);
   const connectiondb = await conn.getConnection();
   const propiedades = await connectiondb
     .db(INMOBILIARIA)
     .collection(PROPIEDADES)
-    .find({"$and":[{"tipo": tipo},{"barrio": barrio}]})
+    .find({ $and: [{ tipo: tipo }, { barrio: barrio }] })
     .toArray();
   return propiedades;
 }
 module.exports = {
-                   postPropiedades,
-                   getAllProperties,
-                   getPropiedad,
-                   updatePropiedad,
-                   deletePropiedad,
-                   filtrarPorTipo,
-                   filtrarPromedio
-                  };
+  postPropiedades,
+  getAllProperties,
+  getPropiedad,
+  updatePropiedad,
+  deletePropiedad,
+  filtrarPorTipo,
+  filtrarPromedio,
+};

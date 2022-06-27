@@ -16,11 +16,11 @@ router.post("/", auth, async function (req, res, next) {
   console.log("entro");
 });
 /* PUT PROPIEDADES. */
-router.put("/", async function (req, res, next) {
+router.put("/", auth, async function (req, res, next) {
   res.json(await controller.updatePropiedad(req.body));
 });
 /* DELETE PROPIEDADES. */
-router.delete("/:id", async function (req, res, next) {
+router.delete("/:id", auth, async function (req, res, next) {
   res.json(await controller.deletePropiedad(req.params.id));
 });
 /* FILTRAR POR VENTA/ALQUILER */

@@ -8,9 +8,9 @@ async function postPropiedades(propiedad) {
   const result = await clientMongo
     .db(INMOBILIARIA)
     .collection(PROPIEDADES)
-    .insertOne({
+    .insertOne(
       propiedad,
-    });
+    );
   return result;
 }
 async function getAllProperties() {

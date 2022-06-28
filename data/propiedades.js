@@ -47,6 +47,7 @@ async function updatePropiedad(propiedad) {
           descripcion: propiedad.descripcion,
           moneda: propiedad.moneda,
           precio: propiedad.precio,
+          esDestacada: propiedad.esDestacada
         },
       }
     );

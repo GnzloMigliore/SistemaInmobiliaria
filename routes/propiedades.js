@@ -13,7 +13,6 @@ router.get("/:id", async function (req, res, next) {
 /* POST PROPIEDADES. */
 router.post("/", auth, async function (req, res, next) {
   res.json(await controller.postPropiedades(req.body));
-  console.log("entro");
 });
 /* PUT PROPIEDADES. */
 router.put("/", auth, async function (req, res, next) {

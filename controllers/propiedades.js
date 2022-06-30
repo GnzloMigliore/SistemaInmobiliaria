@@ -23,9 +23,8 @@ async function filtrarPromedio(tipo, barrio) {
   let promedio = 0;
   properties.map((p) => {
     promedio += parseInt(p.precio);
-    console.log("promedio dentro del map", promedio);
   });
-  console.log(properties.length == 0 ? 0 : promedio / properties.length);
+
   return properties.length == 0 ? 0 : promedio / properties.length;
 }
 module.exports = {

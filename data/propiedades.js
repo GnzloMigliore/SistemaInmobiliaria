@@ -74,8 +74,6 @@ async function filtrarPorTipo(tipo) {
   return propiedades;
 }
 async function filtrarPromedio(tipo, barrio) {
-  console.log(tipo);
-  console.log(barrio);
   const connectiondb = await conn.getConnection();
   const propiedades = await connectiondb
     .db(INMOBILIARIA)

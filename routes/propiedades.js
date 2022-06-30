@@ -28,7 +28,6 @@ router.get("/filtrar/tipo", async function (req, res, next) {
 });
 /* OBTENER PROMEDIO VENTA O ALQUILER */
 router.get("/filtrar/promedio", async function (req, res, next) {
-  console.log("entro");
   res.json(await controller.filtrarPromedio(req.query.tipo, req.query.barrio));
 });
 module.exports = router;

@@ -47,7 +47,7 @@ async function updatePropiedad(propiedad) {
           descripcion: propiedad.descripcion,
           moneda: propiedad.moneda,
           precio: propiedad.precio,
-          esDestacada: propiedad.esDestacada
+          esDestacada: propiedad.esDestacada,
         },
       }
     );
@@ -75,6 +75,7 @@ async function filtrarPorTipo(tipo) {
 }
 async function filtrarPromedio(tipo, barrio) {
   console.log(tipo);
+  console.log(barrio);
   const connectiondb = await conn.getConnection();
   const propiedades = await connectiondb
     .db(INMOBILIARIA)

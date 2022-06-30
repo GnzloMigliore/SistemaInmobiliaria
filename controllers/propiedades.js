@@ -22,10 +22,12 @@ async function filtrarPromedio(tipo, barrio) {
   let properties = await propiedades.filtrarPromedio(tipo, barrio);
   let promedio = 0;
   properties.map((p) => {
-    promedio += parseInt(p.precio);
+    (promedio += parseInt(p.precio)), 2;
   });
 
-  return properties.length == 0 ? 0 : promedio / properties.length;
+  return Number(
+    (properties.length == 0 ? 0 : promedio / properties.length).toFixed(2)
+  );
 }
 module.exports = {
   postPropiedades,
